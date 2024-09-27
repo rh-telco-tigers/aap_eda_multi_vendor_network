@@ -1,0 +1,19 @@
+---
+- name: Port State Event from network
+  hosts: all
+  sources:
+   - ansible.eda.kafka:
+       host: {{ kafka hostname or IP }}
+       port: 9092
+       topic: {{ kafka streaming telemetry topic name }}
+  rules:
+   - name: Test
+     condition: event.body.fields.admin_status == "DOWN"
+     action:
+       run_job_template:
+         organization: "Default"
+         name: "EDA_Admin"
+         post_events: true
+         job_args:
+           extra_vars:
+             limit: ansible_eda.event.body.tags.source
