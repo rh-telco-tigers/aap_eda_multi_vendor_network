@@ -13,6 +13,8 @@ Features
     Logging and Alerting: Built-in support for logging actions and alerting based on event outcomes.
     Scalability: Suitable for small to large network environments.
 
+![Alt text](https://github.com/rh-telco-tigers/aap_eda_multi_vendor_network/blob/6b78b179a6966847c9016d8340acf4cc7f7c5ec8/Multi-Vendor%20Event%20Driven%20Ansible.png)
+
 ## Prerequisites
 
 Ensure the following software is installed and configured:
