@@ -1,0 +1,20 @@
+---
+- name: Set Admin State to Up
+  hosts: "{{ ansible_eda.event.body.tags.source }}"
+  gather_facts: false
+  connection: network_cli
+  tasks:
+  
+    - name: Admins up Arista interface
+      arista.eos.eos_interfaces:
+        config:
+        - name: "{{ ansible_eda.event.body.tags.name }}"
+          enabled: true
+      when: "device_os == 'eos'"
+
+    - name: Admins up Cisco interface
+      cisco.nxos.nxos_interfaces:
+        config:
+        - name: "{{ ansible_eda.event.body.tags.name }}"
+          enabled: true
+      when: "device_os == 'nxos'"
