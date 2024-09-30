@@ -1,0 +1,43 @@
+###############################################################################
+#                            OUTPUT PLUGINS                                   #
+###############################################################################
+[outputs.kafka]
+    brokers = ["172.16.1.103:9092"]
+    topic = "telegraf"
+    data_format = "json"
+
+###############################################################################
+#                            INPUT PLUGINS                                    #
+###############################################################################
+
+[[inputs.cisco_telemetry_gnmi]]
+  ## Address and port of the GNMI GRPC server
+  addresses = ["172.16.1.128:50051"]
+
+  ## credentials
+  username = ""
+  password = ""
+  [[inputs.cisco_telemetry_gnmi.subscription]]
+    name = "cisco"
+    origin = "openconfig"
+    subscription_mode = "on_change"
+    path = "/interfaces/interface[name=eth1/1]/state/admin-status"
+    sample_interval = "10s"
+
+[[inputs.gnmi]]
+  ## Address and port of the GNMI GRPC server
+ addresses = ["172.16.1.127:6030"]
+
+  ## credentials
+ username = ""
+ password = ""
+
+  ## redial in case of failures after
+ redial = "10s"
+
+  [[inputs.gnmi.subscription]]
+    name = "arista"
+    origin = "openconfig"
+    subscription_mode = "on_change"
+    path = "/interfaces/interface[name=Ethernet1]/state/admin-status"
+    sample_interval = "1s"
