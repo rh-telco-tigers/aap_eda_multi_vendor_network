@@ -24,3 +24,4 @@ Ensure the following software is installed and configured:
     Network device credentials stored securely (e.g., Ansible Vault, environment variables)
     Ansible collections for each supported vendor (e.g., cisco.ios, arista.eos, junipernetworks.junos)
     AAP Environment with Ansible Automation Controller, Ansible Private Automation Hub and Ansible Event Driven Controller.
+    Openconfig installed on network devices.
